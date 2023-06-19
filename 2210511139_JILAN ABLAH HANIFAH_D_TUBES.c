@@ -269,18 +269,18 @@ simpul* cariBapak(char nama[], simpul* root) {
     simpul* hasil = NULL;
 
     if (root != NULL) {
-        simpul* bantu = root->child; // Menginisialisasi pointer bantu ke anak pertama simpul root
+        simpul* bantu = root->child; 
 
         if (bantu != NULL) {
-            if (strcmp(bantu->kontainer, nama) == 0) { // Jika nama simpul anak pertama sama dengan nama yang dicari
-                hasil = root; // Simpul root adalah bapaknya
+            if (strcmp(bantu->kontainer, nama) == 0) { 
+                hasil = root; 
             } else {
-                if (bantu->sibling == NULL) { // Jika simpul anak pertama tidak memiliki saudara
-                    hasil = cariBapak(nama, bantu); // Melakukan pencarian rekursif pada simpul anak pertama
+                if (bantu->sibling == NULL) {
+                    hasil = cariBapak(nama, bantu); 
                 } else {
                     while (bantu->sibling != root->child && hasil == NULL) {
-                        hasil = cariBapak(nama, bantu); // Melakukan pencarian rekursif pada simpul anak pertama dan saudaranya
-                        bantu = bantu->sibling; // Pindah ke saudara berikutnya
+                        hasil = cariBapak(nama, bantu); 
+                        bantu = bantu->sibling;
                         if (strcmp(bantu->kontainer, nama)==0)
                         {
                             hasil = root;
@@ -288,14 +288,14 @@ simpul* cariBapak(char nama[], simpul* root) {
                         
                     }
                     if (hasil == NULL) {
-                        hasil = cariBapak(nama, bantu); // Melakukan pencarian rekursif pada saudara terakhir
+                        hasil = cariBapak(nama, bantu); 
                     }
                 }
             }
         }
     }
 
-    return hasil; // Mengembalikan hasil yang berisi pointer ke simpul bapak yang ditemukan
+    return hasil;
 }
 
 
@@ -340,7 +340,6 @@ void printSemuaDosa(simpul *root)
         }
     }
 }
-//jadi kita cari bapak dari yg dicari dan lihat apakah listnya terdiri dari dosa yg dicari jika iya maka cari dimasukkan ke list root sampai bapaknya tidak ada
 void telusurSilsilahPendosa(char nama[], char dosa[], simpul *root) {
     if (root != NULL) {
         char silsilah[20];
@@ -423,13 +422,11 @@ int main()
         }
         else
         {
-            // printf("\nlanjut1\n");
             bantu = findSimpul(bapak, T.root); //cari bapaknya
             if (bantu != NULL)
             {
                 addChild(anak, bantu); //tambahin anaknya di simpul bapaknya 
             }
-            // printf("\nlanjut2\n");
             fflush(stdin);
             createList(&findSimpul(anak, T.root)->kumpulanDosa); //membuat list
             for (j = 0; j < banyakDosa; j++)
@@ -437,7 +434,6 @@ int main()
                 scanf("%s", dosanya); //masukkan dosanya 
                 addLast(dosanya, &findSimpul(anak, T.root)->kumpulanDosa); //tampahkan dosa ke paling terakhir 
             }
-            // printf("\nlanjut3\n");
         }
     }
     printSemuaDosa(T.root); //menampilkan dosa dan orangnya
@@ -451,7 +447,6 @@ int main()
         scanf(" %[^#]#%[^\n]", &nama, &dosanya);
         hapusDosa(nama, dosanya, T.root);
     }
-    // printf("lolos\n");
     printSemuaDosa(T.root);//menampilkan dosa dan nama orangnya
     return 0;
 }
